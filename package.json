@@ -1,0 +1,19 @@
+{
+  "name": "sevenup",
+  "version": "1.0.0",
+  "description": "Simple programming language...",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaximKrylov/SevenUp.git"
+  },
+  "author": "Maxim Krylov (maxim.kryloff@mail.ru)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaximKrylov/SevenUp/issues"
+  },
+  "homepage": "https://github.com/MaximKrylov/SevenUp#readme"
+}

@@ -1,1 +1,2 @@
-# SevenUp
+# SevenUp v1.0
+## Simple programming language...
