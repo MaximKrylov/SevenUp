@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/MaximKrylov/SevenUp/issues"
   },
-  "homepage": "https://github.com/MaximKrylov/SevenUp#readme"
+  "homepage": "https://github.com/MaximKrylov/SevenUp#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-uglify": "^2.0.0",
+    "tiny-lr": "^1.0.3"
+  }
 }

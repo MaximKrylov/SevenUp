@@ -1,0 +1,21 @@
+{
+  "name": "sevenup",
+  "description": "Simple programming language...",
+  "main": "",
+  "authors": [
+    "Maxim Krylov (maxim.kryloff@mail.ru)"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/MaximKrylov/SevenUp",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "^1.5.9",
+    "angular-route": "^1.5.9"
+  }
+}
