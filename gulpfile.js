@@ -11,7 +11,12 @@ var gulp_jade = require('gulp-jade');
 var lr = require('tiny-lr');
 var server = lr();
 
-gulp.task('scripts', ['clean'], function () {
+gulp.task('clean', function () {
+    return gulp.src('dist', { read: false })
+        .pipe(gulp_clean());
+});
+
+gulp.task('build-js', ['clean'], function () {
     gulp.src(['src/app/angular.module.js', 'src/app/angular.routes.js', 'src/**/*.js'])
         .pipe(gulp_sourcemaps.init())
         .pipe(gulp_concat('app.js'))
@@ -21,17 +26,14 @@ gulp.task('scripts', ['clean'], function () {
         .pipe(gulp_refresh(server))
 });
 
-gulp.task('jades', ['clean'], function () {
+gulp.task('build-jade', ['clean'], function () {
     return gulp.src('src/**/*.jade')
         .pipe(gulp_jade({ pretty: true }))
         .pipe(gulp.dest('dist'))
         .pipe(gulp_refresh(server));
 });
 
-gulp.task('clean', function () {
-    return gulp.src('dist', { read: false })
-        .pipe(gulp_clean());
-});
+gulp.task('build', ['build-js', 'build-jade']);
 
 gulp.task('lr-server', function () {
     server.listen(35729, function (err) {
@@ -39,8 +41,6 @@ gulp.task('lr-server', function () {
     });
 });
 
-gulp.task('build', ['scripts', 'jades'], function () {
-    gulp.watch('src/**/*', function (event) {
-        gulp.run('build');
-    });
+gulp.task('deploy', ['lr-server', 'build'], function () {
+    gulp.watch('src/**/*', ['build']);
 });
