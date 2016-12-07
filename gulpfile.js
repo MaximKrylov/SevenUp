@@ -7,6 +7,7 @@ var gulp_clean = require('gulp-clean');
 var gulp_sourcemaps = require('gulp-sourcemaps')
 var gulp_uglify = require('gulp-uglify')
 var gulp_jade = require('gulp-jade');
+var gulp_sass = require('gulp-sass');
 
 var lr = require('tiny-lr');
 var server = lr();
@@ -33,7 +34,17 @@ gulp.task('build-jade', ['clean'], function () {
         .pipe(gulp_refresh(server));
 });
 
-gulp.task('build', ['build-js', 'build-jade']);
+gulp.task('build-sass', ['clean'], function () {
+    return gulp.src('src/assets/sass/style.sass')
+        .pipe(gulp_sass({
+            outputStyle: 'compressed',
+            includePaths: ['src/assets/sass', 'bower_components/bootstrap-sass/assets/stylesheets']
+        }).on('error', gulp_sass.logError))
+        .pipe(gulp.dest('dist'))
+        .pipe(gulp_refresh(server));
+});
+
+gulp.task('build', ['build-js', 'build-jade', 'build-sass']);
 
 gulp.task('lr-server', function () {
     server.listen(35729, function (err) {
