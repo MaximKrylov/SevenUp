@@ -1,8 +1,10 @@
 html(ng-app = 'SevenUp')
     head
-        link(rel='stylesheet', href='style.css')
-        script(src='library.js')
-        script(src='application.js')
+        script(src='../bower_components/angular/angular.js')
+        script(src='../bower_components/angular-route/angular-route.js')
+
+        script(src='sevenup.js')
+        link(rel='stylesheet', href='sevenup.css')
     body
         .container
             div.row
@@ -10,5 +12,4 @@ html(ng-app = 'SevenUp')
                     div.page-header
                         h1.text-center SevenUp v1.0
             div.row
-                div.col-md-12
-                    div(ng-view)
+                div(ng-view)
