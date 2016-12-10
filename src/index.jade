@@ -4,4 +4,11 @@ html(ng-app = 'SevenUp')
         script(src='library.js')
         script(src='application.js')
     body
-        div.container(ng-view)
+        .container
+            div.row
+                div.col-md-12
+                    div.page-header
+                        h1.text-center SevenUp v1.0
+            div.row
+                div.col-md-12
+                    div(ng-view)
