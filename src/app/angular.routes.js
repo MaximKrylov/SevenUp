@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('SevenUp')
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider
