@@ -1,2 +1,29 @@
-h1 {{ Name }}
-p {{ Description }}
+div.col-md-5
+    div.row
+        div.col-md-12
+            textarea(rows="15", ng-model="ProgramCode", ng-change="Perform()")
+    div.row
+        div.col-md-12
+            div(ng-switch="UnknownTokens.length > 0")
+                div#result-container-success(ng-switch-when="false")
+                    h4 There are no errors!
+                div#result-container-danger(ng-switch-when="true")
+                    h4 Your code has the following failures:
+                    br
+                    div(ng-repeat="token in UnknownTokens track by $index")
+                        p {{ token.Value }} at [{{ token.LineNumber }}:{{ token.PositionInLine }}]
+                div#result-container-success(ng-switch-default)
+                    h4 There are no errors!
+div.col-md-7
+    div#tokens-table-container
+        table
+            thead
+                tr
+                    th.col-xs-6 Value
+                    th.col-xs-4 Type
+                    th.col-xs-2 Position
+            tbody
+                tr(ng-repeat="token in RecognizedTokens track by $index")
+                    td.col-xs-6 {{ token.Value }}
+                    td.col-xs-4 {{ token.Type }}
+                    td.col-xs-2 [{{ token.LineNumber }}:{{ token.PositionInLine }}]

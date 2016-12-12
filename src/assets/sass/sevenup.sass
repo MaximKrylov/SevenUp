@@ -1,1 +1,65 @@
 @import "bootstrap";
+
+$danger-color: #d9534f;
+$warning-color: #f0ad4e;
+$success-color: #32cd32;
+
+.noresizable
+    resize: none;
+
+.bs-callout
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    h4
+        margin-top: 0;
+        margin-bottom: 5px;
+
+.bs-callout-danger
+    @extend .bs-callout;
+
+    border-left-color: $danger-color;
+    h4
+        color: $danger-color;
+
+.bs-callout-warning
+    @extend .bs-callout;
+
+    border-left-color: $warning-color;
+    h4
+        color: $warning-color;
+
+.bs-callout-success
+    @extend .bs-callout;
+
+    border-left-color: $success-color;
+    h4
+        color: $success-color;
+
+textarea
+    @extend .form-control;
+    @extend .noresizable;
+
+table
+    @extend .table;
+    @extend .table-hover;
+    @extend .table-striped;
+
+#result-container
+    height: 300px;
+    overflow-y: auto;
+    white-space: nowrap;
+
+#result-container-success
+    @extend #result-container;
+    @extend .bs-callout-success;
+    
+#result-container-danger
+    @extend #result-container;
+    @extend .bs-callout-danger;
+
+#tokens-table-container
+    height: 580px;
+    overflow-y: auto;

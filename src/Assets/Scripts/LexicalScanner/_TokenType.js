@@ -1,6 +1,6 @@
 'use strict';
 
-class TokenType {
+class _TokenType {
     static get Comment() { return "Comment"; }
     static get Number() { return "Number"; }
     static get String() { return "String"; }

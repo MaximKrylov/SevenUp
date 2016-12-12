@@ -18,12 +18,12 @@ gulp.task('clean', function () {
 });
 
 gulp.task('build-js', ['clean'], function () {
-    gulp.src(['src/app/angular.module.js', 'src/app/angular.routes.js', 'src/**/*.js'])
+    gulp.src(['src/App/Angular.Module.js', 'src/App/Angular.Routes.js', 'src/**/*.js'])
         .pipe(gulp_sourcemaps.init())
         .pipe(gulp_babel({
             presets: ['es2015']
         }))
-        .pipe(gulp_concat('sevenup.js'))
+        .pipe(gulp_concat('SevenUp.js'))
         .pipe(gulp_sourcemaps.write('.'))
         .pipe(gulp.dest('dist'))
         .pipe(gulp_refresh(server))
@@ -37,10 +37,10 @@ gulp.task('build-jade', ['clean'], function () {
 });
 
 gulp.task('build-sass', ['clean'], function () {
-    return gulp.src('src/assets/sass/sevenup.sass')
+    return gulp.src('src/Assets/Sass/SevenUp.sass')
         .pipe(gulp_sass({
             outputStyle: 'compressed',
-            includePaths: ['src/assets/sass', 'bower_components/bootstrap-sass/assets/stylesheets']
+            includePaths: ['src/Assets/Sass', 'bower_components/bootstrap-sass/assets/stylesheets']
         }).on('error', gulp_sass.logError))
         .pipe(gulp.dest('dist'))
         .pipe(gulp_refresh(server));

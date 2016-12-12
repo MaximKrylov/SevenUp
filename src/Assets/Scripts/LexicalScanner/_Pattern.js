@@ -1,6 +1,6 @@
 'use strict';
 
-class Pattern {
+class _Pattern {
     // Comments
     static get Comment() { return /^[#](.*)$/ig; }
 
