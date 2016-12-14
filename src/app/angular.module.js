@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('SevenUp', ['ngRoute']);
+angular.module('App', ['ngRoute', 'SevenUp']);

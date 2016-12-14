@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('SevenUp')
+angular.module('App')
     .controller('HomeController', ['$scope', 'LexicalScanner', function ($scope, LexicalScanner) {
         $scope.Perform = function () {
             var temp = LexicalScanner.GetTokens($scope.ProgramCode);

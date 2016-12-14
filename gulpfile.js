@@ -8,6 +8,7 @@ const gulp_jade = require('gulp-jade');
 const gulp_refresh = require('gulp-livereload');
 const gulp_sourcemaps = require('gulp-sourcemaps')
 const gulp_sass = require('gulp-sass');
+const gulp_uglify = require('gulp-uglify');
 
 var lr = require('tiny-lr');
 var server = lr();
@@ -24,6 +25,7 @@ gulp.task('build-js', ['clean'], function () {
             presets: ['es2015']
         }))
         .pipe(gulp_concat('SevenUp.js'))
+        .pipe(gulp_uglify())
         .pipe(gulp_sourcemaps.write('.'))
         .pipe(gulp.dest('dist'))
         .pipe(gulp_refresh(server))
