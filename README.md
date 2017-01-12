@@ -7,7 +7,7 @@ Simple programming language...
 4. bower install
 5. gulp build
 
-] When the application is built you can use it by running **index.html**, which is located in **dist** folder. *npm*, *bower* and *gulp* should be installed globally before building.
+> When the application is built you can use it by running **index.html**, which is located in **dist** folder. *npm*, *bower* and *gulp* should be installed globally before building.
 
 ## Grammar (LL(1))
 ### Expression
