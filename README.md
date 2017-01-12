@@ -7,42 +7,43 @@ Simple programming language...
 4. bower install
 5. gulp build
 
-> When the application is built you can use it by running **index.html**, which is located in **dist** folder. *npm*, *bower* and *gulp* should be installed globally before building.
+] When the application is built you can use it by running **index.html**, which is located in **dist** folder. *npm*, *bower* and *gulp* should be installed globally before building.
+
 ## Grammar (LL(1))
 ### Expression
-<expression>			->			<logic>				<expression_tail>
-<expression>			->	"!"		<logic>				<expression_tail>
+[expression]			->			[logic]				[expression_tail]
+[expression]			->	"!"		[logic]				[expression_tail]
 
-<expression_tail>		->	"|" 	<logic>				<expression_tail>
-<expression_tail>		->	EMPTY
+[expression_tail]		->	"|" 	[logic]				[expression_tail]
+[expression_tail]		->	EMPTY
 
-<logic>					->			<compare>			<logic_tail>
+[logic]					->			[compare]			[logic_tail]
 
-<logic_tail>			->	"&"		<compare>			<logic_tail>
-<logic_tail>			->	EMPTY
+[logic_tail]			->	"&"		[compare]			[logic_tail]
+[logic_tail]			->	EMPTY
 
-<compare>				->			<math>				<compare_tail>
+[compare]				->			[math]				[compare_tail]
 
-<compare_tail>			->	"!="	<math>				<compare_tail> 
-<compare_tail>			->	"==" 	<math> 				<compare_tail>
-<compare_tail>			->	">=" 	<math>				<compare_tail>
-<compare_tail>			->	"<="	<math>				<compare_tail>
-<compare_tail>			->	">"		<math>				<compare_tail>
-<compare_tail>			->	"<"		<math>				<compare_tail>
-<compare_tail>			->	EMPTY
+[compare_tail]			->	"!="	[math]				[compare_tail] 
+[compare_tail]			->	"==" 	[math] 				[compare_tail]
+[compare_tail]			->	"]=" 	[math]				[compare_tail]
+[compare_tail]			->	"[="	[math]				[compare_tail]
+[compare_tail]			->	"]"		[math]				[compare_tail]
+[compare_tail]			->	"["		[math]				[compare_tail]
+[compare_tail]			->	EMPTY
 
-<math>					->			<term>				<math_tail>
-<math>					->	"-"		<term>				<math_tail>
+[math]					->			[term]				[math_tail]
+[math]					->	"-"		[term]				[math_tail]
 
-<math_tail>				->	"+" 	<term>				<math_tail>
-<math_tail>				->	"-"		<term>				<math_tail>
-<math_tail>				->	EMPTY
+[math_tail]				->	"+" 	[term]				[math_tail]
+[math_tail]				->	"-"		[term]				[math_tail]
+[math_tail]				->	EMPTY
 
-<term>					->			<factor>			<term_tail>
+[term]					->			[factor]			[term_tail]
 
-<term_tail>				->	"*"		<factor>			<term_tail>
-<term_tail>				->	"/"		<factor>			<term_tail>
-<term_tail>				->	EMTPY
+[term_tail]				->	"*"		[factor]			[term_tail]
+[term_tail]				->	"/"		[factor]			[term_tail]
+[term_tail]				->	EMTPY
 
-<factor>				->	"("		<expression>		")" 
-<factor>				->			<operative_object>
+[factor]				->	"("		[expression]		")" 
+[factor]				->			[operative_object]
