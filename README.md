@@ -62,7 +62,7 @@ Simple programming language...
 [factor] -> "(" [expression] ")" 
 
 [factor] -> [operative_object]
-### Unit
+### Operative Object
 [operative_object] -> [operative_user_word]
 
 [operative_object] -> "Number"
