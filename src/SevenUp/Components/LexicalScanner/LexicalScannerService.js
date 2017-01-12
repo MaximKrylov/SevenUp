@@ -6,28 +6,11 @@ angular.module('SevenUp')
             static get Comment() { return "Comment"; }
             static get Number() { return "Number"; }
             static get String() { return "String"; }
-            static get Word() { return "Word"; }
-            static get CurlyBracket() { return "CurlyBracket"; }
-            static get RoundBracket() { return "RoundBracket"; }
-            static get SquareBracket() { return "SquareBracket"; }
-            static get MathematicSeparator() { return "MathematicSeparator"; }
-            static get ComparativeSeparator() { return "ComparativeSeparator"; }
-            static get LogicalSeparator() { return "LogicalSeparator"; }
-            static get AssignmentSeparator() { return "AssignmentSeparator"; }
-            static get CommaSeparator() { return "CommaSeparator"; }
-            static get PointSeparator() { return "PointSeparator"; }
-            static get SemicolonSeparator() { return "SemicolonSeparator"; }
-            static get Unknown() { return "Unknown"; }
-        }
-
-        class TokenClass {
-            static get Comments() { return "Comments"; }
-            static get Numbers() { return "Numbers"; }
-            static get Strings() { return "Strings"; }
-            static get UserWords() { return "UserWords"; }
-            static get KeyWords() { return "KeyWords"; }
-            static get Brackets() { return "Brackets"; }
-            static get Separators() { return "Separators"; }
+            static get Boolean() { return "Boolean"; }
+            static get UserWord() { return "UserWord"; }
+            static get KeyWord() { return "KeyWord"; }
+            static get Bracket() { return "Bracket"; }
+            static get Separator() { return "Separator"; }
         }
 
         class Pattern {
@@ -57,7 +40,6 @@ angular.module('SevenUp')
             static get AssignmentSeparator() { return /(=)/ig; }
             // Significant: ; , .
             static get CommaSeparator() { return /[,]/ig; }
-            static get PointSeparator() { return /[.]/ig; }
             static get SemicolonSeparator() { return /[;]/ig; }
 
             // Unknown token
@@ -77,63 +59,68 @@ angular.module('SevenUp')
             static IsLogicalSeparator(tokenValue) { return Pattern.LogicalSeparator.test(tokenValue); }
             static IsAssignmentSeparator(tokenValue) { return Pattern.AssignmentSeparator.test(tokenValue); }
             static IsCommaSeparator(tokenValue) { return Pattern.CommaSeparator.test(tokenValue); }
-            static IsPointSeparator(tokenValue) { return Pattern.PointSeparator.test(tokenValue); }
             static IsSemicolonSeparator(tokenValue) { return Pattern.SemicolonSeparator.test(tokenValue); }
             static IsUnknown(tokenValue) { return Pattern.Unknown.test(tokenValue); }
         }
 
         class Token {
-            constructor(value, type, tokenClass, positionInLine, lineNumber) {
+            constructor(value, type, xPosition, yPosition) {
                 this.Value = value;
                 this.Type = type;
-                this.Class = tokenClass;
-                this.PositionInLine = positionInLine;
-                this.LineNumber = lineNumber;
+                this.XPosition = xPosition;
+                this.YPosition = yPosition;
             }
 
             static GetType(tokenValue) {
-                if (Matcher.IsComment(tokenValue)) return TokenType.Comment;
-                if (Matcher.IsString(tokenValue)) return TokenType.String;
-                if (Matcher.IsWord(tokenValue)) return TokenType.Word;
-                if (Matcher.IsNumber(tokenValue)) return TokenType.Number;
-                if (Matcher.IsCurlyBracket(tokenValue)) return TokenType.CurlyBracket;
-                if (Matcher.IsRoundBracket(tokenValue)) return TokenType.RoundBracket;
-                if (Matcher.IsSquareBracket(tokenValue)) return TokenType.SquareBracket;
-                if (Matcher.IsMathematicSeparator(tokenValue)) return TokenType.MathematicSeparator;
-                if (Matcher.IsComparativeSeparator(tokenValue)) return TokenType.ComparativeSeparator;
-                if (Matcher.IsLogicalSeparator(tokenValue)) return TokenType.LogicalSeparator;
-                if (Matcher.IsAssignmentSeparator(tokenValue)) return TokenType.AssignmentSeparator;
-                if (Matcher.IsCommaSeparator(tokenValue)) return TokenType.CommaSeparator;
-                if (Matcher.IsPointSeparator(tokenValue)) return TokenType.PointSeparator;
-                if (Matcher.IsSemicolonSeparator(tokenValue)) return TokenType.SemicolonSeparator;
-                if (Matcher.IsUnknown(tokenValue)) return TokenType.Unknown;
-            }
-
-            static GetClass(tokenValue) {
-                if (Matcher.IsComment(tokenValue)) { return TokenClass.Comments; }
-                if (Matcher.IsString(tokenValue)) { return TokenClass.Strings; }
-                if (Matcher.IsWord(tokenValue)) {
-                    if (keyWords.includes(tokenValue)) { return TokenClass.KeyWords; }
-                    return TokenClass.UserWords;
+                if (Matcher.IsComment(tokenValue)) {
+                    return TokenType.Comment;
                 }
-                if (Matcher.IsNumber(tokenValue)) { return TokenClass.Numbers; }
-                if (Matcher.IsCurlyBracket(tokenValue) || Matcher.IsRoundBracket(tokenValue)
-                    || Matcher.IsSquareBracket(tokenValue)) { return TokenClass.Brackets; }
-                if (Matcher.IsMathematicSeparator(tokenValue) || Matcher.IsComparativeSeparator(tokenValue)
-                    || Matcher.IsLogicalSeparator(tokenValue) || Matcher.IsAssignmentSeparator(tokenValue)
-                    || Matcher.IsCommaSeparator(tokenValue) || Matcher.IsPointSeparator(tokenValue)
-                    || Matcher.IsSemicolonSeparator(tokenValue)) { return TokenClass.Separators; }
+
+                if (Matcher.IsString(tokenValue)) {
+                    return TokenType.String;
+                }
+
+                if (Matcher.IsWord(tokenValue)) {
+                    if (keyWords.includes(tokenValue)) {
+                        return TokenType.KeyWord;
+                    }
+
+                    if (tokenValue === "true" || tokenValue === "false") {
+                        return TokenType.Boolean;
+                    }
+
+                    return TokenType.UserWord;
+                }
+
+                if (Matcher.IsNumber(tokenValue)) {
+                    return TokenType.Number;
+                }
+
+                if (Matcher.IsCurlyBracket(tokenValue)
+                    || Matcher.IsRoundBracket(tokenValue)
+                    || Matcher.IsSquareBracket(tokenValue)) {
+                    return TokenType.Bracket;
+                }
+
+                if (Matcher.IsMathematicSeparator(tokenValue)
+                    || Matcher.IsComparativeSeparator(tokenValue)
+                    || Matcher.IsLogicalSeparator(tokenValue)
+                    || Matcher.IsAssignmentSeparator(tokenValue)
+                    || Matcher.IsCommaSeparator(tokenValue)
+                    || Matcher.IsSemicolonSeparator(tokenValue)) {
+                    return TokenType.Separator;
+                }
             }
         }
 
-        var keyWords = ["if", "else", "while", "do", "number", "void", "string", "return", "function"];
+        var keyWords = ["if", "else", "while", "do", "for", "break", "number", "void", "string", "bool", "array", "of", "return", "function", "Program"];
 
         class LexicalScanner {
             static Perform(tokens, regexp, line, lineNumber) {
                 var result;
 
                 while (result = regexp.exec(line)) {
-                    var temp = new Token(result[0], Token.GetType(result[0]), Token.GetClass(result[0]), result.index, lineNumber)
+                    var temp = new Token(result[0], Token.GetType(result[0]), result.index, lineNumber)
                     tokens.push(temp);
                 }
 
@@ -164,20 +151,19 @@ angular.module('SevenUp')
                         line = LexicalScanner.Perform(tokens, Pattern.LogicalSeparator, line, index);
                         line = LexicalScanner.Perform(tokens, Pattern.AssignmentSeparator, line, index);
                         line = LexicalScanner.Perform(tokens, Pattern.CommaSeparator, line, index);
-                        line = LexicalScanner.Perform(tokens, Pattern.PointSeparator, line, index);
                         line = LexicalScanner.Perform(tokens, Pattern.SemicolonSeparator, line, index);
                         LexicalScanner.Perform(unknowns, Pattern.Unknown, line, index);
                     }
                 });
 
                 tokens.sort((a, b) => {
-                    if (a.LineNumber == b.LineNumber) { return a.PositionInLine - b.PositionInLine; }
-                    return a.LineNumber - b.LineNumber;
+                    if (a.YPosition == b.YPosition) { return a.XPosition - b.XPosition; }
+                    return a.YPosition - b.YPosition;
                 });
 
                 unknowns.sort((a, b) => {
-                    if (a.LineNumber == b.LineNumber) { return a.PositionInLine - b.PositionInLine; }
-                    return a.LineNumber - b.LineNumber;
+                    if (a.YPosition == b.YPosition) { return a.XPosition - b.XPosition; }
+                    return a.YPosition - b.YPosition;
                 });
 
                 return {

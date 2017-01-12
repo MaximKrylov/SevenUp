@@ -11,7 +11,7 @@ div.col-md-5
                     h4 Your code has the following failures:
                     br
                     div(ng-repeat="token in UnknownTokens track by $index")
-                        p {{ token.Value }} at [{{ token.LineNumber }}:{{ token.PositionInLine }}]
+                        p {{ token.Value }} at [{{ token.YPosition }}:{{ token.XPosition }}]
                 div#result-container-success(ng-switch-default)
                     h4 There are no errors!
 div.col-md-7
@@ -26,4 +26,4 @@ div.col-md-7
                 tr(ng-repeat="token in RecognizedTokens track by $index")
                     td.col-xs-6 {{ token.Value }}
                     td.col-xs-4 {{ token.Type }}
-                    td.col-xs-2 [{{ token.LineNumber }}:{{ token.PositionInLine }}]
+                    td.col-xs-2 [{{ token.YPosition }}:{{ token.XPosition }}]
