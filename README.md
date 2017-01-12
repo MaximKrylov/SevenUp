@@ -9,7 +9,7 @@ Simple programming language...
 
 > When the application is built you can use it by running **index.html**, which is located in **dist** folder. *npm*, *bower* and *gulp* should be installed globally before building.
 
-## Grammar (LL(1))
+## Grammar, LL(1)
 ### Expression
 [expression] -> [logic] [expression_tail]
 
@@ -62,3 +62,29 @@ Simple programming language...
 [factor] -> "(" [expression] ")" 
 
 [factor] -> [operative_object]
+### Unit
+[operative_object] -> [operative_user_word]
+
+[operative_object] -> "Number"
+
+[operative_object] -> "String"
+
+[operative_object] -> "Boolean"
+
+[operative_user_word] -> "UserWord" [operative_user_word_tail]
+
+[operaive_user_word_tail] -> "[" [array_element_parameters_list] "]"
+
+[operaive_user_word_tail] -> "(" [func_call_parameters_list] ")"
+
+[operaive_user_word_tail] -> EMTPY
+
+[array_element_parameters_list] -> [expression] [operative_parameters_list_tail]
+
+[func_call_parameters_list] -> [expression] [operative_parameters_list_tail]
+
+[func_call_parameters_list] -> EMPTY
+
+[operative_parameters_list_tail] -> "," [expression] [operative_parameters_list_tail]
+
+[operative_parameters_list_tail] -> EMPTY
