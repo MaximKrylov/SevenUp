@@ -1,1 +1,5 @@
-angular.module('SevenUp', []);
+(function () {
+    'use strict';
+
+    angular.module('SevenUp', []);
+})();
