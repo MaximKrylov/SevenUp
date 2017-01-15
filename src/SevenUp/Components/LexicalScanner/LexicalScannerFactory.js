@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('SevenUp')
-        .factory('LexicalScanner', LexicalScanner);
+        .factory('LexicalScanner', LexicalScannerFactory);
 
-    function LexicalScanner() {
+    function LexicalScannerFactory() {
         return {
             GetTokens: function (programCode) {
                 return LexicalScanner.GetTokens(programCode);
