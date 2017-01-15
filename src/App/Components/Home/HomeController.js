@@ -7,9 +7,9 @@
     function HomeController(lexicalScanner) {
         var self = this;
 
-        self.ExecuteProgramCode = executeProgramCode;
+        self.ExecuteProgramCode = ExecuteProgramCode;
 
-        function executeProgramCode() {
+        function ExecuteProgramCode() {
             var temp = lexicalScanner.GetTokens(self.ProgramCode);
 
             self.RecognizedTokens = temp.RecognizedTokens;
